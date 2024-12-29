@@ -1,2 +1,6 @@
-# hm_run_current_macro
-今、「秀丸で開いているマクロ」を実行するためのマクロ。いちいちファイルの指定が不要となる。
+# HmRunCurrentMacro
+
+![Hidemaru 9.25](https://img.shields.io/badge/Hidemaru-v9.25-6479ff.svg)
+
+- 今、秀丸で開いているマクロを実行するためのマクロ。  
+  (マクロ作成中などにおいて、個々にマクロの登録を不要とするためにある)
