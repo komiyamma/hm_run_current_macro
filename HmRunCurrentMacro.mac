@@ -19,6 +19,10 @@ function outputAlert(msg) {
 }
 
 try {
+    if (!filename2()) {
+        throw "何らかのマクロをファイルを開いて実行してください。";
+    }
+
     if (filetype() != ".mac") {
         throw "開かれているのがマクロファイルではないようです。";
     }
