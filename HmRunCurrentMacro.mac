@@ -1,10 +1,13 @@
 ﻿/*
- * HmRunCurrentMacro v 1.0.0.1
+ * HmRunCurrentMacro v 1.0.0.2
  *
  * Copyright (c) 2024 Akitsugu Komiyama
  * under the MIT License
  */
 
+if (filetype != ".mac") {
+    endmacro;
+}
 
 hidemaruversion "9.25.99";
 
