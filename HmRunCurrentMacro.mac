@@ -5,9 +5,6 @@
  * under the MIT License
  */
 
-if (filetype != ".mac") {
-    endmacro;
-}
 
 hidemaruversion "9.25.99";
 
@@ -22,6 +19,10 @@ function outputAlert(msg) {
 }
 
 try {
+    if (filetype() != ".mac") {
+        throw "開かれているのがマクロファイルではないようです。";
+    }
+
     // このマクロの機能を自分自身を対象には出来ない。無限ループとなってしまう。
     if (hidemaru.getFileFullPath().toLowerCase() == currentmacrofilename()) {
         throw "この「" + basename2() +"」自体を実行することは出来ません。";
