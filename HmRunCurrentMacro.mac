@@ -27,8 +27,10 @@ try {
         throw "開かれているのがマクロファイルではないようです。";
     }
 
+    let currentFileFullPath = hidemaru.getFileFullPath();
+
     // このマクロの機能を自分自身を対象には出来ない。無限ループとなってしまう。
-    if (hidemaru.getFileFullPath().toLowerCase() == currentmacrofilename()) {
+    if (currentFileFullPath.toLowerCase() == currentmacrofilename()) {
         throw "この「" + basename2() +"」自体を実行することは出来ません。";
     }
 
@@ -54,7 +56,10 @@ try {
 
     // 「今秀丸で開いているファイルの拡張子」が.macの時、「完全に新規のマクロ」扱いで実行する。
     if (filetype() == ".mac") {
-        pushPostExecMacroFile(hidemaru.getFileFullPath());
+
+        hidemaru.setStaticVariable("HmLastExecMacro", currentFileFullPath, 1);
+
+        pushPostExecMacroFile(currentFileFullPath);
     }
 
 } catch(err) {
