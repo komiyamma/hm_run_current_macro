@@ -34,6 +34,12 @@ try {
         throw "この「" + basename2() +"」自体を実行することは出来ません。";
     }
 
+    var timerHandler;
+
+    if (timerHandler) {
+        hidemaru.clearTimeout(timerHandler);
+    }
+
     // hidemaru.pushPostExecMacroFileの実行を確かなものとする関数
     function pushPostExecMacroFile(fileFullPath) {
         let isScheduled = false;
@@ -45,12 +51,11 @@ try {
             }
             // 実行が成功していなければ、次の試行をセット
             if (!isScheduled) {
-                hidemaru.setTimeout(attemptExecution, 100); // 100ミリ秒後に再度実行を試みる
+                timerHandler = hidemaru.setTimeout(attemptExecution, 100); // 100ミリ秒後に再度実行を試みる
             }
         }
 
-        // 最初の実行を0ディレイで開始
-        hidemaru.setTimeout(attemptExecution, 0);
+        attemptExecution();
     }
 
     // 「今秀丸で開いているファイルの拡張子」が.macの時、「完全に新規のマクロ」扱いで実行する。
